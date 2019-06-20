@@ -108,6 +108,7 @@
 
 	<insert id="save" parameterType="com.xxl.job.admin.core.model.XxlJobInfo" useGeneratedKeys="true" keyProperty="id" >
 		INSERT INTO xxl_job_info (
+			biz_job_id,
 			job_group,
 			job_cron,
 			job_desc,
@@ -130,6 +131,7 @@
 			trigger_last_time,
 			trigger_next_time
 		) VALUES (
+			#{bizJobId},
 			#{jobGroup},
 			#{jobCron},
 			#{jobDesc},
@@ -223,4 +225,10 @@
 		WHERE id = #{id}
 	</update>
 
+
+	<select id="findByBizJobId" parameterType="java.util.HashMap" resultMap="XxlJobInfo">
+		SELECT <include refid="Base_Column_List" />
+		FROM xxl_job_info AS t
+		WHERE t.biz_job_id = #{bizJobId}
+	</select>
 </mapper>

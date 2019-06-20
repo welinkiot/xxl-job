@@ -5,6 +5,7 @@ use `xxl-job`;
 
 CREATE TABLE `xxl_job_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `biz_job_id` BIGINT(20) NULL DEFAULT 0 COMMENT '业务任务ID',
   `job_group` int(11) NOT NULL COMMENT '执行器主键ID',
   `job_cron` varchar(128) NOT NULL COMMENT '任务执行CRON',
   `job_desc` varchar(255) NOT NULL,

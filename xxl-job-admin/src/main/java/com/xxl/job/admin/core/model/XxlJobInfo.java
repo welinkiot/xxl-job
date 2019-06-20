@@ -10,7 +10,7 @@ import java.util.Date;
 public class XxlJobInfo {
 	
 	private int id;				// 主键ID
-	
+
 	private int jobGroup;		// 执行器主键ID
 	private String jobCron;		// 任务执行CRON表达式
 	private String jobDesc;
@@ -38,6 +38,10 @@ public class XxlJobInfo {
 	private int triggerStatus;		// 调度状态：0-停止，1-运行
 	private long triggerLastTime;	// 上次调度时间
 	private long triggerNextTime;	// 下次调度时间
+
+	// 拓展业务字段
+	private long bizJobId;     // 业务任务ID
+	private String jobGroupName; // 执行器名称
 
 
 	public int getId() {
@@ -214,5 +218,21 @@ public class XxlJobInfo {
 
 	public void setTriggerNextTime(long triggerNextTime) {
 		this.triggerNextTime = triggerNextTime;
+	}
+
+	public long getBizJobId() {
+		return bizJobId;
+	}
+
+	public void setBizJobId(long bizJobId) {
+		this.bizJobId = bizJobId;
+	}
+
+	public String getJobGroupName() {
+		return jobGroupName;
+	}
+
+	public void setJobGroupName(String jobGroupName) {
+		this.jobGroupName = jobGroupName;
 	}
 }
