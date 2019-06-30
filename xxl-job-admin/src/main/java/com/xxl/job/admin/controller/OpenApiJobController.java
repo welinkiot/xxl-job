@@ -101,19 +101,9 @@ public class OpenApiJobController {
 			return new ReturnT<>(ReturnT.FAIL_CODE,
 					MessageFormat.format((I18nUtil.getString("system_unvalid")+"({0})"), jobInfo.getBizJobId()));
 		}
-		// 设置任务ID
-		jobInfo.setId(xxlJobInfo.getId());
+		xxlJobInfo.setJobCron(jobInfo.getJobCron());
 
-		// 查询执行器ID
-		XxlJobGroup jobGroup = xxlJobGroupDao.findByAppName(jobInfo.getJobGroupName());
-		if (jobGroup == null) {
-			return new ReturnT<>(ReturnT.FAIL_CODE,
-					MessageFormat.format((I18nUtil.getString("system_unvalid")+"({0})"), jobInfo.getJobGroupName()));
-		}
-		// 设置执行器ID
-		jobInfo.setJobGroup(jobGroup.getId());
-
-		return xxlJobService.update(jobInfo);
+		return xxlJobService.update(xxlJobInfo);
 	}
 
 	@PermissionLimit(limit = false)
