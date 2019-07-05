@@ -99,7 +99,8 @@ public class OpenApiJobController {
 		XxlJobInfo xxlJobInfo = xxlJobInfoDao.findByBizJobId(jobInfo.getBizJobId());
 		if (xxlJobInfo == null) {
 			return new ReturnT<>(ReturnT.FAIL_CODE,
-					MessageFormat.format((I18nUtil.getString("system_unvalid")+"({0})"), jobInfo.getBizJobId()));
+					MessageFormat.format((I18nUtil.getString("system_unvalid")+"({0})"),
+							String.valueOf(jobInfo.getBizJobId())));
 		}
 		xxlJobInfo.setJobCron(jobInfo.getJobCron());
 
@@ -118,7 +119,8 @@ public class OpenApiJobController {
 		XxlJobInfo xxlJobInfo = xxlJobInfoDao.findByBizJobId(bizJobId);
 		if (xxlJobInfo == null) {
 			return new ReturnT<>(ReturnT.FAIL_CODE,
-					MessageFormat.format((I18nUtil.getString("system_unvalid")+"({0})"), bizJobId));
+					MessageFormat.format((I18nUtil.getString("system_unvalid")+"({0})"),
+							String.valueOf(bizJobId)));
 		}
 		return xxlJobService.remove(xxlJobInfo.getId());
 	}
@@ -135,7 +137,8 @@ public class OpenApiJobController {
 		XxlJobInfo xxlJobInfo = xxlJobInfoDao.findByBizJobId(bizJobId);
 		if (xxlJobInfo == null) {
 			return new ReturnT<>(ReturnT.FAIL_CODE,
-					MessageFormat.format((I18nUtil.getString("system_unvalid")+"({0})"), bizJobId));
+					MessageFormat.format((I18nUtil.getString("system_unvalid")+"({0})"),
+							String.valueOf(bizJobId)));
 		}
 		return xxlJobService.stop(xxlJobInfo.getId());
 	}
@@ -152,7 +155,8 @@ public class OpenApiJobController {
 		XxlJobInfo xxlJobInfo = xxlJobInfoDao.findByBizJobId(bizJobId);
 		if (xxlJobInfo == null) {
 			return new ReturnT<>(ReturnT.FAIL_CODE,
-					MessageFormat.format((I18nUtil.getString("system_unvalid")+"({0})"), bizJobId));
+					MessageFormat.format((I18nUtil.getString("system_unvalid")+"({0})"),
+							String.valueOf(bizJobId)));
 		}
 		return xxlJobService.start(xxlJobInfo.getId());
 	}
@@ -170,7 +174,8 @@ public class OpenApiJobController {
 		XxlJobInfo xxlJobInfo = xxlJobInfoDao.findByBizJobId(bizJobId);
 		if (xxlJobInfo == null) {
 			return new ReturnT<>(ReturnT.FAIL_CODE,
-					MessageFormat.format((I18nUtil.getString("system_unvalid")+"({0})"), bizJobId));
+					MessageFormat.format((I18nUtil.getString("system_unvalid")+"({0})"),
+							String.valueOf(bizJobId)));
 		}
 		// force cover job param
 		if (executorParam == null) {
