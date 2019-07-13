@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.text.MessageFormat;
-import java.util.Arrays;
 
 /**
  * index controller
@@ -102,6 +101,7 @@ public class OpenApiJobController {
 					MessageFormat.format((I18nUtil.getString("system_unvalid")+"({0})"),
 							String.valueOf(jobInfo.getBizJobId())));
 		}
+		xxlJobInfo.setJobDesc(jobInfo.getJobDesc());
 		xxlJobInfo.setJobCron(jobInfo.getJobCron());
 
 		return xxlJobService.update(xxlJobInfo);
