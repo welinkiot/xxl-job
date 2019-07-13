@@ -149,16 +149,30 @@ public class JobScheduleHelper {
 
                         // tx stop
 
-                        conn.commit();
+
                     } catch (Exception e) {
                         if (!scheduleThreadToStop) {
                             logger.error(">>>>>>>>>>> xxl-job, JobScheduleHelper#scheduleThread error:{}", e);
                         }
                     } finally {
+
+                        // commit
+                        try {
+                            conn.commit();
+                        } catch (SQLException e) {
+                            if (!scheduleThreadToStop) {
+                                logger.error(e.getMessage(), e);
+                            }
+                        }
+
+                        // close PreparedStatement
                         if (null != preparedStatement) {
                             try {
                                 preparedStatement.close();
                             } catch (SQLException ignore) {
+                                if (!scheduleThreadToStop) {
+                                    logger.error(ignore.getMessage(), ignore);
+                                }
                             }
                         }
                     }
